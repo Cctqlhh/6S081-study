@@ -301,6 +301,7 @@ myapi.key:
 		echo An API key should be 32 characters long.; \
 		false; \
 	fi;
-
+gdb:
+	gdb-multiarch -q kernel/kernel
 
 .PHONY: handin tarball tarball-pref clean grade handin-check
