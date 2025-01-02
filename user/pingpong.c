@@ -11,18 +11,23 @@ main(int argc, char **argv)
 	pipe(p2);
 	if(fork() == 0)
 	{
+		close(p1[1]);
+		close(p2[0]);
+
 		read(p1[0], buff, 4);
-		close(p1[0]);
+		// close(p1[0]);
 		printf("%d: received %s\n", getpid(), buff);
 		write(p2[1], "pong", 4);
-		close(p2[1]);
+		// close(p2[1]);
 		exit(0);
 	}
-	else{
+	else{ 
+		close(p1[0]);
+		close(p2[1]);
 		write(p1[1], "ping", 4);
-		close(p1[1]);
+		// close(p1[1]);
 		read(p2[0], buff, 4);
-		close(p2[0]);
+		// close(p2[0]);
 		printf("%d: received %s\n", getpid(), buff);
 		wait(0);
 	}
