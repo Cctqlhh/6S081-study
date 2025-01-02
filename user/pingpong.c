@@ -21,7 +21,7 @@ main(int argc, char **argv)
 		// close(p2[1]);
 		exit(0);
 	}
-	else{ 
+	else{
 		close(p1[0]);
 		close(p2[1]);
 		write(p1[1], "ping", 4);
